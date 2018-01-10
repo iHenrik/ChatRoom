@@ -18,7 +18,7 @@
         <div class="content-div">
             <div class="chat-para-div">
 
-                <div class="chat-frame-div">
+                <div id="chatFrame" class="chat-frame-div">
                     <ul id="discussion"></ul>
                 </div>
 
@@ -58,6 +58,10 @@
                 var encodedMsg = $('<div/>').text(message).html();
 
                 $('#discussion').append('<li class="message-item"><div class="nick">' + encodedName + ':</div> <div class="message">' + encodedMsg + '</div></li>');
+
+                var frame = $('#chatFrame');
+                var height = frame[0].scrollHeight;
+                frame.scrollTop(height);
             };
 
             //Receiving new user

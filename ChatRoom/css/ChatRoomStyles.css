@@ -43,8 +43,8 @@
     border: 0.75px solid #111111;
     height: 60vh;
     overflow: auto;
-    display: flex;
-    flex-direction: column-reverse;
+    /*display: flex;
+    flex-direction: column-reverse;*/
 }
 
 .send-controls-div {
@@ -87,7 +87,6 @@ li {
 
 #discussion {
     margin-left: 20px;
-    /*overflow: auto;*/
 }
 
 .nick {
