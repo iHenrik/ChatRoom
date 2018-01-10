@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>The Chat Room</title>
+    <meta charset="utf-8" />
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet'
+          type='text/css'>
+
+    <!--Styles-->
+    <link href="css/ChatRoomStyles.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="base-div">
+        <div class="chat-header-div">The Chat Room</div>
+
+        <div class="content-div">
+            <div class="chat-para-div">
+
+                <div class="chat-frame-div">
+                    <ul id="discussion"></ul>
+                </div>
+
+                <div class="send-controls-div">
+                    <input type="text" id="message" placeholder="Write here..."/>
+                    <input type="button" id="sendmessage" value="Send" />
+                </div>
+
+                <input type="hidden" id="displayname" />
+
+            </div>
+
+            <div class="online-para-div">
+                <div class="online-header-div">Online</div>
+                <div>
+                    <ul id="users"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="scripts/jquery-1.10.2.js"></script>
+    <script src="scripts/jquery.signalR-2.2.2.js"></script>
+    <script src="signalr/hubs"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            var chat = $.connection.chatHub;
+
+            //Receiving message
+            chat.client.broadcastMessage = function (name, message) {
+
+                var encodedName = $('<div/>').text(name).html();
+                var encodedMsg = $('<div/>').text(message).html();
+
+                $('#discussion').append('<li class="message-item"><div class="nick">' + encodedName + ':</div> <div class="message">' + encodedMsg + '</div></li>');
+            };
+
+            //Receiving new user
+            chat.client.broadcastUserList = function (userList) {
+                var users = userList.split(',');
+
+                $('#users').empty();
+
+                for (var i = 0; i < users.length; i++) {
+                    var encodedName = $('<div/>').text(users[i]).html();
+                    $('#users').append('<li class="online-item">' + encodedName + '</li>');
+                }
+            };
+
+            //Sending data
+            $.connection.hub.start().done(function () {
+
+                var nick = window.prompt('Enter your nick: ');
+                $('#displayname').val(nick);
+                $('#message').focus();
+
+                chat.server.addUser(nick);
+
+                $('#message').on('keypress', function (e) {
+                    if (e.which === 13) {
+                        sendMessage($('#displayname').val(), $('#message').val());
+                    }
+                });
+
+                $('#sendmessage').click(function () {
+                    sendMessage($('#displayname').val(), $('#message').val());
+                });
+            });
+
+            function sendMessage(sender, message)
+            {
+                chat.server.send(sender, message);
+                $('#message').val('').focus();
+            }
+        })
+
+    </script>
+
+</body>
+</html>

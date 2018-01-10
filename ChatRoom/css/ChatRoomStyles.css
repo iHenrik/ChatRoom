@@ -1,0 +1,115 @@
+﻿html, body {
+    padding: 0;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    height: 100%;
+}
+
+.base-div {
+    margin: 30px 60px 30px 60px;
+}
+
+.chat-header-div {
+    width: 100%;
+    font-family: Roboto, sans-serif;
+    font-weight: 100;
+    font-size: 40px;
+    border-bottom: 1px solid #111111;
+}
+
+.content-div {
+    margin-top: 50px;
+}
+
+.online-header-div {
+    font-family: Roboto, sans-serif;
+    font-weight: 100;
+    font-size: 24px;
+}
+
+.chat-para-div {
+    float: left;
+    width: 75%;
+    height: 100%;
+}
+
+.online-para-div {
+    float: left;
+    margin-left: 40px;
+    height: 100%;
+}
+
+.chat-frame-div {
+    border: 0.75px solid #111111;
+    height: 60vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.send-controls-div {
+    margin-top: 10px;
+}
+
+#message {
+    border: 0;
+    border-bottom: 1px solid black;
+    outline: none;
+    width: 93%;
+    padding-left: 5px;
+}
+
+#sendmessage {
+    background-color: transparent;
+    border: 1px solid black;
+    padding: 4px 14px 4px 14px;
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-right: 0px;
+}
+
+ul {
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.message-item {
+    margin: 10px 0 10px 0;
+}
+
+#discussion {
+    margin-left: 20px;
+    /*overflow: auto;*/
+}
+
+.nick {
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.message {
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.message-item {
+    margin-top: 15px;
+}
+
+.online-item {
+    margin-left: 20px;
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+}
